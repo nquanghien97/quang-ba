@@ -2,26 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.gradient-text {
+  background: linear-gradient(to right, #AB7515, #FFFFD3, #F1D37D, #AB7515);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Dành cho trình duyệt hỗ trợ chuẩn mới */
+  background-clip: text;
+  color: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.gradient {
+  background: linear-gradient(to right, #AB7515, #FFFFD3, #F1D37D, #AB7515);
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.bg-item {
+  background: rgba(241, 211, 125, 0.1);
 }

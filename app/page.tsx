@@ -1,101 +1,122 @@
+'use client'
+import FormOrder from "@/components/FormOrder";
+import ImageRank from "@/components/ImageRank";
+import { useAuthStore } from "@/stores/auth.stores";
+import { TYPE_RANK } from "@/types/ranks";
+import { maskPhoneNumber } from "@/utils/maskPhoneNumber";
 import Image from "next/image";
+import { useEffect } from "react";
+
+const fakeData = [
+  {
+    username: 'W124',
+    fullName: 'Nguyễn Văn A',
+    commission: 50000
+  },
+  {
+    username: 'W125',
+    fullName: 'Nguyễn Văn B',
+    commission: 45000
+  },
+  {
+    username: 'W126',
+    fullName: 'Nguyễn Văn C',
+    commission: 40000
+  },
+  {
+    username: 'W127',
+    fullName: 'Nguyễn Văn D',
+    commission: 35000
+  },
+  {
+    username: 'W128',
+    fullName: 'Nguyễn Văn E',
+    commission: 30000
+  },
+  {
+    username: 'W129',
+    fullName: 'Nguyễn Văn F',
+    commission: 25000
+  },
+  {
+    username: 'W130',
+    fullName: 'Nguyễn Văn F',
+    commission: 20000
+  }
+]
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const { me } = useAuthStore();
+  
+  useEffect(() => {
+    document.title = 'Quảng bá'
+  }, [])
+
+  return (
+    <div className="max-w-6xl m-auto">
+      <div className="bg-[url('/bgr.jpg')] bg-[length:100%_100%]">
+        <Image src="/title.png" alt="title" width={600} height={200} className="m-auto mb-2" />
+        <p className="gradient-text text-2xl font-semibold text-center mb-4">CHIA SẺ TỪ TÂM - VƯỢT TẦM THU NHẬP</p>
+        <div className="flex max-lg:flex-col justify-around gap-2 p-4">
+          <div className="lg:w-1/2">
+            <div className="flex justify-center">
+              <ImageRank typeRank={TYPE_RANK.rank1} width={300} height={300} />
+            </div>
+            <div className="flex justify-around max-md:flex-col">
+              <ImageRank typeRank={TYPE_RANK.rank2} width={240} height={240} />
+              <ImageRank typeRank={TYPE_RANK.rank3} width={240} height={240} />
+            </div>
+          </div>
+          <div className="lg:w-1/2">
+            <ul className="w-full">
+              {fakeData.map((data, index) => (
+                <li key={index} className={`flex justify-around py-1 my-2 ${index % 2 !== 0 ? '' : 'bg-item'}`}>
+                  <p className="gradient-text font-bold">{`${index + 4}. ${data.username} - ${data.fullName}`}</p>
+                  <p className="gradient-text font-bold">{data.commission}</p>
+                </li>
+              ))}
+            </ul>
+            <div>
+              <div className="gradient py-2 text-center rounded-t-xl">
+                <span className="text-[#002A9E] font-bold text-xl">VỊ TRÍ CỦA BẠN</span>
+              </div>
+              <div className={`flex justify-around py-2 bg-item`}>
+                <p className="gradient-text font-bold">{`20. W123 - Nguyễn Thị B`}</p>
+                <p className="gradient-text font-bold">{`10000`}</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="bg-[url('/bgr2.jpg')] bg-[length:100%_100%] flex max-lg:flex-col gap-2 lg:p-8">
+        <div className="lg:w-2/3">
+          <FormOrder />
+        </div>
+        <div className="lg:w-1/3">
+          <div>
+            <div className="gradient py-2 text-center rounded-xl">
+              <span className="text-[#002A9E] font-bold text-xl">Thông tin người dùng</span>
+            </div>
+            <div>
+              <p className="text-[#002A9E] my-2">Họ tên CBNV: <strong>{me?.fullName}</strong></p>
+              <p className="text-[#002A9E] my-2">Mã số nhân viên: <strong>{me?.username}</strong></p>
+              <p className="text-[#002A9E] my-2">Cộng đồng: <strong>{me?.community || 'Chưa có thông tin'}</strong></p>
+              <p className="text-[#002A9E] my-2">Số điện thoại: <strong>{maskPhoneNumber(me?.phoneNumber)}</strong></p>
+            </div>
+          </div>
+          <div>
+            <div className="gradient py-2 text-center rounded-xl">
+              <span className="text-[#002A9E] font-bold text-xl">Doanh số</span>
+            </div>
+            <div>
+              <p className="text-[#002A9E] my-2">Hôm nay: <strong>2.400.000 VNĐ</strong></p>
+              <p className="text-[#002A9E] my-2">Tháng này: <strong>12.400.000 VNĐ</strong></p>
+              <p className="text-[#002A9E] my-2">Hoa hồng tháng này: <strong>2.480.000 VNĐ</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
