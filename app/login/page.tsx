@@ -9,7 +9,7 @@ import { useAuthStore } from '@/stores/auth.stores';
 import Image from 'next/image';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-// import LoadingIcon from '@/components/LoadingIcon';
+import LoadingIcon from '@/components/ui/LoadingIcon';
 
 function Login() {
 
@@ -18,7 +18,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ username?: string; password?: string }>({});
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { getMe } = useAuthStore();
 
@@ -28,7 +28,7 @@ function Login() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     try {
       const newErrors: { username?: string; password?: string } = {};
       if (!username.trim()) {
@@ -49,7 +49,7 @@ function Login() {
       console.log(err)
       toast.error('Đăng nhập thất bại. Vui lòng thử lại')
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
   }
 
@@ -71,7 +71,7 @@ function Login() {
             <div className="flex justify-center">
               <Button variant='primary' type='submit'>
                 Đăng nhập
-                {/* {loading && <LoadingIcon />} */}
+                {loading && <LoadingIcon />}
               </Button>
             </div>
           </form>

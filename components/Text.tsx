@@ -1,6 +1,13 @@
 import React from 'react'
 
-function TextCustom() {
+interface TextCustomProps {
+  text: string
+}
+
+function TextCustom(props: TextCustomProps) {
+
+  const { text } = props
+
   const radius = 800
   return (
     <svg width="100%" height="100%" viewBox={`0 0 ${radius * 2 + 20} ${radius * 2 + 50}`}>
@@ -14,9 +21,9 @@ function TextCustom() {
       />
 
       {/* Văn bản theo đường cong */}
-      <text className="fill-[#825e1f]">
+      <text className="fill-[#002A9E]">
         <textPath xlinkHref="#curve" fontSize={radius / 20} textAnchor="middle" startOffset="50%">
-          W123 - Nguyễn Văn A
+          {text}
         </textPath>
       </text>
     </svg>

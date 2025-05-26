@@ -19,3 +19,35 @@
 .bg-item {
   background: rgba(241, 211, 125, 0.1);
 }
+
+.svg_loading {
+  animation: spin 1s linear infinite;
+
+  circle {
+    opacity: .25;
+  }
+  path {
+    opacity: .75;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(1turn)
+  }
+}
+
+
+/* react-select */
+
+.css-13cymwt-control {
+  border-radius: 12px !important;
+  padding: 5px !important;
+}
+
+.css-t3ipsp-control {
+  border-radius: 12px !important;
+  padding: 5px !important;
+}
+
+

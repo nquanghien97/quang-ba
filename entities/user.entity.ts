@@ -6,4 +6,13 @@ export interface UserEntity {
   role: 'ADMIN' | 'USER';
   phoneNumber: string;
   community: string | null
+  revenue_by_month: {
+    totalRevenue: number
+    commission: number
+    commmissionRate: number
+    month: number
+    year: number
+    rank: number
+  }
+  todayRevenue: number
 }

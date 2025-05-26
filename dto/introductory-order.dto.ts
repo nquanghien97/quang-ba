@@ -8,3 +8,16 @@ export interface CreateOrderDTO {
   quantity: number
   isRelatives?: boolean
 }
+
+export interface ListRevenueByMonth {
+  id: number
+  userId: number
+  totalRevenue: number
+  commission: number
+  commmissionRate: number
+  fullName: string
+  username:string
+  month: number
+  year: number
+  image_url?: string
+}
